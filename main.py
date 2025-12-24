@@ -50,7 +50,7 @@ def compress(path):  # COMPRESS FILE DATA
 
         # Visualize the Huffman tree
     graph = visualize_tree(root_node)
-    graph.render('huffman_tree', format='png', view=True)  # saves and opens PNG
+    graph.render(name + '_huffman_tree', format='png', view=True)  # saves and opens PNG
     return size
 
 
@@ -237,7 +237,7 @@ def decompress(path):  # DECOMPRESS FILE DATA
         b_arr.append(int(output[i:i + 8], 2))
 
     # Convertir les caractères en texte et écrire directement
-    create_output(str(b_arr, 'utf-8'), name + '.txt', mode=1)
+    create_output(str(b_arr, 'utf-8'), name + '_decom.txt', mode=1)
 
 
 def decode_tree(data):  # DECODE TREE FROM HEADER
@@ -346,6 +346,7 @@ if __name__ == '__main__':
         if op != 1:
             # Taux de compression
             print("Compression rate is ", str('{:.2f}'.format((100 - (new_size / original_size) * 100))) + " %")
+            print("Compression gain is ", str('{:.2f}'.format((1 - (new_size / original_size) ))) )
 
         # Demander à l'utilisateur s'il veut continuer
         x = int(input("Do you want to compress or decompress more files? (0 for NO | 1 for YES) "))
